@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 3006
+EXPOSE 30006
 
 # Command to run the app
 CMD ["node", "index.js"]
