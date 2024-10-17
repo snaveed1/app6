@@ -62,6 +62,6 @@ jobs:
           # Step 7: Update app6deployment.yml with the new image tag
           yq e '.spec.template.spec.containers[0].image = "${{ secrets.GCP_GAR_HOST }}/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPO }}/${{ secrets.GCP_IMAGE_NAME }}:${{ github.sha }}"' -i app6/app6deployment.yml
 
-          git add app6/app6values.yml app6/app6deployment.yml
-          git commit -m "updating newer image and deployment configuration"  
+          git add app6/app6deployment.yml
+          git commit -m "updating deployment configuration"  
           git push --set-upstream origin non-prod
