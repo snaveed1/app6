@@ -49,7 +49,7 @@ jobs:
           # Push the Docker image
           docker push "$image"
 
-# Step 6: Clone the GitOps repository
+      # Step 6: Clone the GitOps repository
       - name: Clone GitOps repository
         run: |
           git clone https://${{ secrets.GIT_OPS_GITHUB_USER }}:${{ secrets.GIT_OPS_GITHUB_TOKEN }}@github.com/snaveed1/gitops-apps-repo.git
@@ -58,13 +58,7 @@ jobs:
 
           git config user.name "snaveed1"
           git config user.email "shaikhnaved10346@gmail.com"
-
-          # Set image name in app6values.yml
-          yq e '.image.name = "${{ secrets.GCP_GAR_HOST }}/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPO }}/${{ secrets.GCP_IMAGE_NAME }}"' -i app6/app6values.yml
-
-          # Set image tag to the commit ID in app6values.yml
-          yq e '.image.tag = "${{ github.sha }}"' -i app6/app6values.yml  # Use commit ID as tag
-
+          
           # Step 7: Update app6deployment.yml with the new image tag
           yq e '.spec.template.spec.containers[0].image = "${{ secrets.GCP_GAR_HOST }}/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPO }}/${{ secrets.GCP_IMAGE_NAME }}:${{ github.sha }}"' -i app6/app6deployment.yml
 
