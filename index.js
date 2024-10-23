@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
             <title>App6</title>
             <style>
                 body {
-                    background-color: lightgrey;
+                    background-color: grey;
                     margin: 0;
                     height: 100vh;
                     display: flex;
